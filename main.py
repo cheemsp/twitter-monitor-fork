@@ -7,7 +7,7 @@ Twitter Monitor Fork - 主程序
 import os
 from crawler import TwitterCrawler
 from discord_bot import DiscordPusher
-from web_generator import WebGenerator
+from web_generator import generate_html
 from config import SEARCH_RULES, DISCORD_WEBHOOK
 
 def main():
@@ -21,7 +21,6 @@ def main():
     )
     
     discord = DiscordPusher(DISCORD_WEBHOOK)
-    web_gen = WebGenerator()
     
     # 抓取所有类别
     all_data = {}
@@ -40,7 +39,7 @@ def main():
     
     # 生成网站
     print("\n🌐 生成网站...")
-    web_gen.generate(all_data, SEARCH_RULES)
+    generate_html(all_data, SEARCH_RULES)
     
     print("\n✅ 全部完成!")
 
